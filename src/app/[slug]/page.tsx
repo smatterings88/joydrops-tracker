@@ -12,27 +12,40 @@ export const dynamic = 'force-dynamic';
 export const dynamicParams = true;
 
 interface PageProps {
-    params: { slug: string };
+    params: Promise<{ slug: string }> | { slug: string };
 }
 
 async function getProfileData(slug: string) {
     try {
         const normalizedSlug = slug.toLowerCase();
+        console.log('Fetching profile for slug:', normalizedSlug);
 
         // 1. Resolve Slug
         const slugDoc = await adminDb.collection('slugs').doc(normalizedSlug).get();
-        if (!slugDoc.exists) return null;
+        if (!slugDoc.exists) {
+            console.log('Slug not found in database:', normalizedSlug);
+            return null;
+        }
 
         const slugData = slugDoc.data();
-        if (!slugData || !slugData.userId) return null;
+        if (!slugData || !slugData.userId) {
+            console.log('Slug document missing userId:', normalizedSlug);
+            return null;
+        }
 
         const { userId } = slugData as { userId: string };
+        console.log('Found userId for slug:', userId);
 
         // 2. Get Profile
         const userDoc = await adminDb.collection('user_profiles').doc(userId).get();
-        if (!userDoc.exists) return null;
+        if (!userDoc.exists) {
+            console.log('User profile not found for userId:', userId);
+            return null;
+        }
 
-        return { id: userDoc.id, ...userDoc.data() } as any;
+        const profileData = { id: userDoc.id, ...userDoc.data() } as any;
+        console.log('Successfully fetched profile:', profileData.slug);
+        return profileData;
     } catch (error) {
         console.error('Error fetching profile data:', error);
         return null;
@@ -40,7 +53,9 @@ async function getProfileData(slug: string) {
 }
 
 export default async function ProfilePage({ params }: PageProps) {
-    const profile = await getProfileData(params.slug);
+    // Handle both Promise and direct params (for Next.js 15+ compatibility)
+    const resolvedParams = params instanceof Promise ? await params : params;
+    const profile = await getProfileData(resolvedParams.slug);
 
     if (!profile) {
         notFound();
