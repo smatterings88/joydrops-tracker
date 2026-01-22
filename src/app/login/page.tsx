@@ -52,8 +52,26 @@ function LoginForm() {
             }
 
         } catch (err: any) {
-            console.error(err);
-            setError("Invalid email or password");
+            console.error('Login error:', err);
+            
+            // Provide more specific error messages
+            let errorMessage = "Invalid email or password";
+            
+            if (err.code === 'auth/invalid-credential') {
+                errorMessage = "Invalid email or password. Please check your credentials and try again.";
+            } else if (err.code === 'auth/user-not-found') {
+                errorMessage = "No account found with this email address.";
+            } else if (err.code === 'auth/wrong-password') {
+                errorMessage = "Incorrect password. Please try again or use 'Forgot Password' to reset.";
+            } else if (err.code === 'auth/too-many-requests') {
+                errorMessage = "Too many failed login attempts. Please try again later.";
+            } else if (err.code === 'auth/network-request-failed') {
+                errorMessage = "Network error. Please check your connection and try again.";
+            } else if (err.message) {
+                errorMessage = err.message;
+            }
+            
+            setError(errorMessage);
             setLoading(false);
         }
     };
