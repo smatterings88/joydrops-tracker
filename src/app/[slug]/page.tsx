@@ -5,6 +5,7 @@ import { adminDb } from '@/lib/firebaseAdmin';
 import { JoydropCounter } from '@/components/JoydropCounter';
 import { TierIndicator } from '@/components/TierIndicator';
 import { OrganizationMemberList } from '@/components/OrganizationMemberList';
+import { ProfileHeader } from '@/components/ProfileHeader';
 import { MapPin, Building2, User } from 'lucide-react';
 
 // Force dynamic rendering - don't statically generate this route
@@ -64,14 +65,9 @@ export default async function ProfilePage({ params }: PageProps) {
     const isOrg = profile.userType === 'organization';
 
     return (
-        <div className="min-h-screen bg-gray-50 pb-20">
-            {/* Header / Nav Placeholder */}
-            <div className="bg-white border-b shadow-sm sticky top-0 z-10 px-4 py-3 flex justify-between items-center">
-                <Link href="/" className="font-bold text-xl text-gray-900">Joydrops</Link>
-                <Link href="/register-joydrop" className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
-                    Register Joydrop
-                </Link>
-            </div>
+            <div className="min-h-screen bg-gray-50 pb-20">
+            {/* Header / Nav */}
+            <ProfileHeader />
 
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
 

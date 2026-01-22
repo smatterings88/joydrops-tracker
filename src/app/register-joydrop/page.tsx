@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { TierIndicator } from '@/components/TierIndicator';
+import { Navbar } from '@/components/Navbar';
 import { MapPin, Loader2, CheckCircle2 } from 'lucide-react';
 
 export default function RegisterJoydropPage() {
@@ -142,8 +143,10 @@ export default function RegisterJoydropPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-lg w-full mx-auto bg-white rounded-xl shadow-md p-8">
+        <div className="min-h-screen bg-gray-50">
+            <Navbar />
+            <div className="py-12 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-lg w-full mx-auto bg-white rounded-xl shadow-md p-8">
                 <div className="text-center mb-8">
                     <h2 className="text-3xl font-extrabold text-gray-900">Register a Joydrop</h2>
                     <p className="mt-2 text-sm text-gray-600">Track your positive impact</p>
@@ -202,6 +205,7 @@ export default function RegisterJoydropPage() {
                 </form>
                 <div className="mt-4 text-center">
                     <button onClick={() => router.back()} className="text-sm text-gray-500 hover:text-gray-700">Cancel</button>
+                </div>
                 </div>
             </div>
         </div>
