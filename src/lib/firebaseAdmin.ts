@@ -1,6 +1,6 @@
-import { getApps, initializeApp, cert, getApp } from 'firebase-admin/app';
-import { getFirestore } from 'firebase-admin/firestore';
-import { getAuth } from 'firebase-admin/auth';
+import { getApps, initializeApp, cert, getApp, App } from 'firebase-admin/app';
+import { getFirestore, Firestore } from 'firebase-admin/firestore';
+import { getAuth, Auth } from 'firebase-admin/auth';
 
 // Validate required environment variables
 if (!process.env.FIREBASE_ADMIN_PROJECT_ID) {
@@ -19,9 +19,9 @@ const serviceAccount = {
     privateKey: process.env.FIREBASE_ADMIN_PRIVATE_KEY.replace(/\\n/g, '\n'),
 };
 
-let adminApp;
-let adminDb;
-let adminAuth;
+let adminApp: App;
+let adminDb: Firestore;
+let adminAuth: Auth;
 
 try {
     // Initialize Firebase Admin (singleton pattern to prevent hot-reload errors)
