@@ -7,6 +7,10 @@ import { TierIndicator } from '@/components/TierIndicator';
 import { OrganizationMemberList } from '@/components/OrganizationMemberList';
 import { MapPin, Building2, User } from 'lucide-react';
 
+// Force dynamic rendering - don't statically generate this route
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
+
 interface PageProps {
     params: { slug: string };
 }
