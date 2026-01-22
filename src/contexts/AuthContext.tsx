@@ -34,18 +34,27 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             if (firebaseUser) {
                 // Subscribe to user profile changes in real-time
                 const userRef = doc(db, 'user_profiles', firebaseUser.uid);
-                const unsubscribeProfile = onSnapshot(userRef, (docSnap) => {
-                    if (docSnap.exists()) {
-                        setUserProfile(docSnap.data() as UserProfile);
-                    } else {
-                        console.error("User profile not found for uid:", firebaseUser.uid);
+                const unsubscribeProfile = onSnapshot(
+                    userRef,
+                    (docSnap) => {
+                        if (docSnap.exists()) {
+                            setUserProfile(docSnap.data() as UserProfile);
+                        } else {
+                            console.warn("User profile not found for uid:", firebaseUser.uid, "- User may need to complete registration");
+                            setUserProfile(null);
+                        }
+                        setLoading(false);
+                    },
+                    (error) => {
+                        console.error("Error fetching user profile:", error);
+                        // If it's a permissions error, log it specifically
+                        if (error.code === 'permission-denied') {
+                            console.error("Permission denied - check Firestore rules for user_profiles collection");
+                        }
                         setUserProfile(null);
+                        setLoading(false);
                     }
-                    setLoading(false);
-                }, (error) => {
-                    console.error("Error fetching user profile:", error);
-                    setLoading(false);
-                });
+                );
 
                 // Cleanup subscription on unmount or user change
                 return () => unsubscribeProfile();

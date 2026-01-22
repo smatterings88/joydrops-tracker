@@ -7,18 +7,13 @@ service cloud.firestore {
       return request.auth != null;
     }
     
-    // Helper function to check if user owns the document
-    function isOwner(userId) {
-      return isAuthenticated() && request.auth.uid == userId;
-    }
-    
     // User profiles collection
     match /user_profiles/{userId} {
-      // Users can read their own profile
-      allow read: if isOwner(userId);
+      // Users can read their own profile (userId must match auth.uid)
+      allow read: if isAuthenticated() && request.auth.uid == userId;
       
       // Users can update their own profile (but not create - that's done via API)
-      allow update: if isOwner(userId);
+      allow update: if isAuthenticated() && request.auth.uid == userId;
       
       // Only server/admin can create profiles (via API routes)
       allow create: if false;
