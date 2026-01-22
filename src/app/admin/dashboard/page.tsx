@@ -1,14 +1,36 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { DualTierLeaderboard } from '@/components/DualTierLeaderboard';
 import MapView from '@/components/MapView';
 import Link from 'next/link';
+import { Loader2 } from 'lucide-react';
+
+interface Stats {
+    totalJoydrops: number;
+    totalUsers: number;
+    totalIndividuals: number;
+    totalOrganizations: number;
+}
 
 export default function AdminDashboard() {
-    // Ideally check for admin email here or in layout/middleware
-    // user?.email === 'mgzobel@icloud.com' etc.
-    // For implementation speed, we render the dashboard assuming protection is handled by parent/middleware.
+    const [stats, setStats] = useState<Stats | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchStats = async () => {
+            try {
+                const res = await fetch('/api/get_stats');
+                const data = await res.json();
+                setStats(data);
+            } catch (err) {
+                console.error('Error fetching stats:', err);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchStats();
+    }, []);
 
     return (
         <div className="min-h-screen bg-gray-50 pb-20">
@@ -25,13 +47,40 @@ export default function AdminDashboard() {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
-                {/* Stats Overview Placeholder */}
+                {/* Stats Overview */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                         <p className="text-sm text-gray-500">Total Joydrops</p>
-                        <p className="text-2xl font-bold text-gray-900">--</p>
+                        {loading ? (
+                            <Loader2 className="animate-spin text-gray-400 mt-2" size={24} />
+                        ) : (
+                            <p className="text-2xl font-bold text-gray-900">{stats?.totalJoydrops ?? 0}</p>
+                        )}
                     </div>
-                    {/* ... other stats ... */}
+                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <p className="text-sm text-gray-500">Total Users</p>
+                        {loading ? (
+                            <Loader2 className="animate-spin text-gray-400 mt-2" size={24} />
+                        ) : (
+                            <p className="text-2xl font-bold text-gray-900">{stats?.totalUsers ?? 0}</p>
+                        )}
+                    </div>
+                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <p className="text-sm text-gray-500">Individuals</p>
+                        {loading ? (
+                            <Loader2 className="animate-spin text-gray-400 mt-2" size={24} />
+                        ) : (
+                            <p className="text-2xl font-bold text-gray-900">{stats?.totalIndividuals ?? 0}</p>
+                        )}
+                    </div>
+                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <p className="text-sm text-gray-500">Organizations</p>
+                        {loading ? (
+                            <Loader2 className="animate-spin text-gray-400 mt-2" size={24} />
+                        ) : (
+                            <p className="text-2xl font-bold text-gray-900">{stats?.totalOrganizations ?? 0}</p>
+                        )}
+                    </div>
                 </div>
 
                 {/* Map Section */}
