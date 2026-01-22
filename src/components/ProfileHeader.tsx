@@ -7,7 +7,7 @@ import { LogOut, LayoutDashboard, Users } from 'lucide-react';
 import { isAdmin } from '@/lib/adminUtils';
 
 export function ProfileHeader() {
-    const { user, logout } = useAuth();
+    const { user, userProfile, logout } = useAuth();
     const router = useRouter();
     const admin = user ? isAdmin(user.email) : false;
 
