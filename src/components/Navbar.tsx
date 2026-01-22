@@ -47,6 +47,15 @@ export function Navbar() {
                                         </Link>
                                     </>
                                 )}
+                                {userProfile?.userType === 'organization' && (
+                                    <Link 
+                                        href="/admin/manage-users" 
+                                        className="flex items-center gap-1 text-purple-600 hover:text-purple-700 font-medium"
+                                    >
+                                        <Users className="h-4 w-4" />
+                                        Add Members
+                                    </Link>
+                                )}
                                 {userProfile?.slug && (
                                     <Link 
                                         href={`/${userProfile.slug}`} 
