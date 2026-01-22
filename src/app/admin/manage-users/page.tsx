@@ -91,7 +91,7 @@ export default function ManageUsersPage() {
                                 <input
                                     type="email"
                                     required
-                                    className="block w-full pl-9 rounded-md border-gray-300 border p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                    className="block w-full pl-9 rounded-md border-gray-300 border p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-900"
                                     placeholder="jane@example.com"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}

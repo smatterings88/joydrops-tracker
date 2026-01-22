@@ -166,14 +166,14 @@ export default function RegisterJoydropPage() {
                         <input
                             type="url"
                             placeholder="Related URL (optional)"
-                            className="block w-full rounded-md border-gray-300 border p-2 mb-3 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                            className="block w-full rounded-md border-gray-300 border p-2 mb-3 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-900"
                             value={formData.url}
                             onChange={(e) => setFormData({ ...formData, url: e.target.value })}
                         />
                         <textarea
                             placeholder="Comment or thought (optional)"
                             rows={3}
-                            className="block w-full rounded-md border-gray-300 border p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                            className="block w-full rounded-md border-gray-300 border p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-900"
                             value={formData.comment}
                             onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
                         />

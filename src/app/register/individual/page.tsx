@@ -134,34 +134,34 @@ export default function IndividualRegisterPage() {
                     <div className="space-y-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Full Name</label>
-                            <input required type="text" name="name" value={formData.name} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border p-2" />
+                            <input required type="text" name="name" value={formData.name} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border p-2 text-gray-900" />
                         </div>
 
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Email</label>
-                            <input required type="email" name="email" value={formData.email} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border p-2" />
+                            <input required type="email" name="email" value={formData.email} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border p-2 text-gray-900" />
                         </div>
 
                         {/* Added Password Field */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Password</label>
-                            <input required type="password" name="password" onChange={(e) => setFormData(p => ({ ...p, password: e.target.value }))} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border p-2" />
+                            <input required type="password" name="password" onChange={(e) => setFormData(p => ({ ...p, password: e.target.value }))} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border p-2 text-gray-900" />
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">City</label>
-                                <input required type="text" name="city" value={formData.city} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border p-2" />
+                                <input required type="text" name="city" value={formData.city} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border p-2 text-gray-900" />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Country</label>
-                                <input required type="text" name="country" value={formData.country} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border p-2" />
+                                <input required type="text" name="country" value={formData.country} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border p-2 text-gray-900" />
                             </div>
                         </div>
 
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Organization (Optional)</label>
-                            <select name="organizationId" value={formData.organizationId} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border p-2">
+                            <select name="organizationId" value={formData.organizationId} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border p-2 text-gray-900">
                                 <option value="">Select an organization...</option>
                                 {organizations.map(org => (
                                     <option key={org.id} value={org.id}>{org.orgName}</option>

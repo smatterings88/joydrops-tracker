@@ -96,7 +96,7 @@ export const SlugChecker: React.FC<SlugCheckerProps> = ({
                     value={value}
                     onChange={handleChange}
                     className={cn(
-                        "block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2 bg-white border",
+                        "block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2 bg-white border text-gray-900",
                         available === true && "border-green-500 focus:border-green-500 focus:ring-green-500",
                         available === false && "border-red-500 focus:border-red-500 focus:ring-red-500"
                     )}

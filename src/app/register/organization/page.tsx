@@ -77,33 +77,33 @@ export default function OrganizationRegisterPage() {
                     <div className="space-y-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Organization Name</label>
-                            <input required type="text" name="orgName" value={formData.orgName} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 border p-2" />
+                            <input required type="text" name="orgName" value={formData.orgName} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 border p-2 text-gray-900" />
                         </div>
 
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Login Email</label>
-                            <input required type="email" name="email" value={formData.email} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 border p-2" />
+                            <input required type="email" name="email" value={formData.email} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 border p-2 text-gray-900" />
                         </div>
 
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Password</label>
-                            <input required type="password" name="password" value={formData.password} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 border p-2" />
+                            <input required type="password" name="password" value={formData.password} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 border p-2 text-gray-900" />
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">City</label>
-                                <input required type="text" name="orgCity" value={formData.orgCity} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 border p-2" />
+                                <input required type="text" name="orgCity" value={formData.orgCity} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 border p-2 text-gray-900" />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Country</label>
-                                <input required type="text" name="orgCountry" value={formData.orgCountry} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 border p-2" />
+                                <input required type="text" name="orgCountry" value={formData.orgCountry} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 border p-2 text-gray-900" />
                             </div>
                         </div>
 
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Contact Person</label>
-                            <input type="text" name="orgContactPerson" value={formData.orgContactPerson} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 border p-2" />
+                            <input type="text" name="orgContactPerson" value={formData.orgContactPerson} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 border p-2 text-gray-900" />
                         </div>
                     </div>
 
