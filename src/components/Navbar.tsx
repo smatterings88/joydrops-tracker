@@ -3,11 +3,13 @@
 import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
-import { Droplets, LogOut } from 'lucide-react';
+import { Droplets, LogOut, LayoutDashboard, Users } from 'lucide-react';
+import { isAdmin } from '@/lib/adminUtils';
 
 export function Navbar() {
     const { user, userProfile, logout } = useAuth();
     const router = useRouter();
+    const admin = user ? isAdmin(user.email) : false;
 
     const handleLogout = async () => {
         await logout();
@@ -27,6 +29,24 @@ export function Navbar() {
                     <div className="flex items-center gap-4">
                         {user ? (
                             <>
+                                {admin && (
+                                    <>
+                                        <Link 
+                                            href="/admin/dashboard" 
+                                            className="flex items-center gap-1 text-purple-600 hover:text-purple-700 font-medium"
+                                        >
+                                            <LayoutDashboard className="h-4 w-4" />
+                                            Dashboard
+                                        </Link>
+                                        <Link 
+                                            href="/admin/manage-users" 
+                                            className="flex items-center gap-1 text-purple-600 hover:text-purple-700 font-medium"
+                                        >
+                                            <Users className="h-4 w-4" />
+                                            Manage Users
+                                        </Link>
+                                    </>
+                                )}
                                 {userProfile?.slug && (
                                     <Link 
                                         href={`/${userProfile.slug}`} 
