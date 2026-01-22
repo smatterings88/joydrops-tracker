@@ -12,19 +12,27 @@ interface PageProps {
 }
 
 async function getProfileData(slug: string) {
-    const normalizedSlug = slug.toLowerCase();
+    try {
+        const normalizedSlug = slug.toLowerCase();
 
-    // 1. Resolve Slug
-    const slugDoc = await adminDb.collection('slugs').doc(normalizedSlug).get();
-    if (!slugDoc.exists) return null;
+        // 1. Resolve Slug
+        const slugDoc = await adminDb.collection('slugs').doc(normalizedSlug).get();
+        if (!slugDoc.exists) return null;
 
-    const { userId } = slugDoc.data() as { userId: string };
+        const slugData = slugDoc.data();
+        if (!slugData || !slugData.userId) return null;
 
-    // 2. Get Profile
-    const userDoc = await adminDb.collection('user_profiles').doc(userId).get();
-    if (!userDoc.exists) return null;
+        const { userId } = slugData as { userId: string };
 
-    return { id: userDoc.id, ...userDoc.data() } as any;
+        // 2. Get Profile
+        const userDoc = await adminDb.collection('user_profiles').doc(userId).get();
+        if (!userDoc.exists) return null;
+
+        return { id: userDoc.id, ...userDoc.data() } as any;
+    } catch (error) {
+        console.error('Error fetching profile data:', error);
+        return null;
+    }
 }
 
 export default async function ProfilePage({ params }: PageProps) {
