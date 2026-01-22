@@ -38,7 +38,7 @@ export async function GET(request: Request) {
 
         return NextResponse.json({
             members,
-            totalOrgCount
+            totalOrgCount: orgTotalCount
         });
 
     } catch (error) {
