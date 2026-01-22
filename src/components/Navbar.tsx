@@ -47,7 +47,7 @@ export function Navbar() {
                                         </Link>
                                     </>
                                 )}
-                                {userProfile?.userType === 'organization' && (
+                                {userProfile?.userType === 'organization' && !admin && (
                                     <Link 
                                         href="/admin/manage-users" 
                                         className="flex items-center gap-1 text-purple-600 hover:text-purple-700 font-medium"
