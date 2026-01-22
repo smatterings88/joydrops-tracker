@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { adminDb } from '@/lib/firebaseAdmin';
+import type { Query } from 'firebase-admin/firestore';
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
@@ -7,15 +8,19 @@ export async function GET(request: Request) {
     const limit = parseInt(searchParams.get('limit') || '10');
 
     try {
-        let q = adminDb.collection('user_profiles');
+        const baseRef = adminDb.collection('user_profiles');
+        let q: Query;
 
         // TIER 1 Leaderboard
         if (type === 'individual') {
-            q = q.where('userType', '==', 'individual').orderBy('joydropCount', 'desc').limit(limit);
+            q = baseRef.where('userType', '==', 'individual').orderBy('joydropCount', 'desc').limit(limit);
         }
         // TIER 2 Leaderboard
         else if (type === 'organization') {
-            q = q.where('userType', '==', 'organization').orderBy('orgJoydropCount', 'desc').limit(limit);
+            q = baseRef.where('userType', '==', 'organization').orderBy('orgJoydropCount', 'desc').limit(limit);
+        } else {
+            // Default to individual if invalid type
+            q = baseRef.where('userType', '==', 'individual').orderBy('joydropCount', 'desc').limit(limit);
         }
         // Geo leaderboards (simplified for MVP: fetch top 50 and aggregate in memory or specialized queries, 
         // but Firestore doesn't support easy GROUP BY. 
