@@ -26,12 +26,32 @@ export async function POST(request: Request) {
         }
 
         const normalizedSlug = slug.toLowerCase();
+        const normalizedOrgName = orgName.trim();
 
         // Check slug
         const slugRef = adminDb.collection('slugs').doc(normalizedSlug);
         const slugDoc = await slugRef.get();
         if (slugDoc.exists) {
             return NextResponse.json({ success: false, message: 'Slug already taken' }, { status: 409 });
+        }
+
+        // Check for duplicate organization name (case-insensitive)
+        // Fetch all organizations and check names in memory since Firestore doesn't support case-insensitive queries
+        const orgsSnapshot = await adminDb.collection('user_profiles')
+            .where('userType', '==', 'organization')
+            .get();
+
+        const existingOrgNames = orgsSnapshot.docs.map(doc => {
+            const data = doc.data();
+            return data.orgName?.trim().toLowerCase() || '';
+        });
+
+        const normalizedOrgNameLower = normalizedOrgName.toLowerCase();
+        if (existingOrgNames.includes(normalizedOrgNameLower)) {
+            return NextResponse.json({ 
+                success: false, 
+                message: 'An organization with this name already exists. Please choose a different name.' 
+            }, { status: 409 });
         }
 
         // Create Auth User
@@ -55,7 +75,7 @@ export async function POST(request: Request) {
             createdAt: FieldValue.serverTimestamp(),
 
             // Organization fields
-            orgName,
+            orgName: normalizedOrgName, // Store normalized (trimmed) name
             orgType: orgType || null,
             orgAddress: orgAddress || null,
             orgCity: orgCity || null,
