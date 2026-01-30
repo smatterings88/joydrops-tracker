@@ -33,8 +33,8 @@ export const SlugChecker: React.FC<SlugCheckerProps> = ({
             }
 
             // Basic client-side validation
-            if (value.length > 10) {
-                setError("Max 10 characters");
+            if (value.length > 30) {
+                setError("Max 30 characters");
                 setAvailable(false);
                 onAvailabilityChange(false);
                 return;
@@ -101,7 +101,7 @@ export const SlugChecker: React.FC<SlugCheckerProps> = ({
                         available === false && "border-red-500 focus:border-red-500 focus:ring-red-500"
                     )}
                     placeholder={placeholder}
-                    maxLength={10}
+                    maxLength={30}
                 />
                 <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                     {loading && <Loader2 className="h-5 w-5 text-gray-400 animate-spin" />}

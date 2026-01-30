@@ -15,7 +15,7 @@ export async function POST(request: Request) {
         const normalizedSlug = slug.toLowerCase();
 
         // Check strict length and format on server side too
-        if (normalizedSlug.length > 10 || !/^[a-z0-9]+$/.test(normalizedSlug)) {
+        if (normalizedSlug.length > 30 || !/^[a-z0-9]+$/.test(normalizedSlug)) {
             return NextResponse.json(
                 { available: false, message: 'Invalid slug format' },
                 { status: 400 }
