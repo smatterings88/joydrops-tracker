@@ -36,7 +36,7 @@ export default function AdminDashboard() {
         <div className="min-h-screen bg-gray-50 pb-20">
             <div className="bg-white border-b shadow-sm sticky top-0 z-10 px-4 py-3 flex justify-between items-center">
                 <div className="flex items-center gap-4">
-                    <Link href="/" className="font-bold text-xl text-gray-900">Joydrops Admin</Link>
+                    <Link href="/" className="font-bold text-xl text-gray-900">ThankYouGram Admin</Link>
                     <span className="bg-gray-100 px-2 py-0.5 rounded text-xs text-gray-500">Dashboard</span>
                 </div>
                 <div className="flex gap-4">
@@ -50,7 +50,7 @@ export default function AdminDashboard() {
                 {/* Stats Overview */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <p className="text-sm text-gray-500">Total Joydrops</p>
+                        <p className="text-sm text-gray-500">Total ThankYouGrams</p>
                         {loading ? (
                             <Loader2 className="animate-spin text-gray-400 mt-2" size={24} />
                         ) : (

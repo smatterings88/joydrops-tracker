@@ -87,7 +87,7 @@ export default function RegisterJoydropPage() {
             }
         } catch (err) {
             console.error(err);
-            setError("Failed to submit joydrop");
+            setError("Failed to submit ThankYouGram");
         } finally {
             setSubmitting(false);
         }
@@ -105,7 +105,7 @@ export default function RegisterJoydropPage() {
                         <CheckCircle2 className="w-10 h-10 text-green-600" />
                     </div>
 
-                    <h2 className="text-3xl font-bold text-gray-900">Joydrop Registered!</h2>
+                    <h2 className="text-3xl font-bold text-gray-900">ThankYouGram Registered!</h2>
                     <p className="text-gray-500">Your counts have been updated.</p>
 
                     <div className="grid grid-cols-2 gap-4 mt-6">
@@ -148,7 +148,7 @@ export default function RegisterJoydropPage() {
             <div className="py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-lg w-full mx-auto bg-white rounded-xl shadow-md p-8">
                 <div className="text-center mb-8">
-                    <h2 className="text-3xl font-extrabold text-gray-900">Register a Joydrop</h2>
+                    <h2 className="text-3xl font-extrabold text-gray-900">Register a ThankYouGram</h2>
                     <p className="mt-2 text-sm text-gray-600">Track your positive impact</p>
                 </div>
 
@@ -191,7 +191,7 @@ export default function RegisterJoydropPage() {
                                 onChange={(e) => setFormData({ ...formData, didJoydrop: e.target.checked })}
                                 className="h-6 w-6 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
                             />
-                            <span className="text-lg font-medium text-blue-900">I did a joydrop!</span>
+                            <span className="text-lg font-medium text-blue-900">I did a ThankYouGram!</span>
                         </label>
                     </div>
 
@@ -200,7 +200,7 @@ export default function RegisterJoydropPage() {
                         disabled={submitting || !formData.didJoydrop}
                         className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-lg font-bold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all hover:scale-[1.02]"
                     >
-                        {submitting ? <Loader2 className="animate-spin" /> : 'Register Joydrop'}
+                        {submitting ? <Loader2 className="animate-spin" /> : 'Register ThankYouGram'}
                     </button>
                 </form>
                 <div className="mt-4 text-center">

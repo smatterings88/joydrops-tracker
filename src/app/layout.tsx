@@ -6,8 +6,8 @@ import { AuthProvider } from '@/contexts/AuthContext';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Joydrops Tracker',
-  description: 'Track individual and organizational joydrops',
+  title: 'ThankYouGram',
+  description: 'Track individual and organizational ThankYouGrams',
 };
 
 export default function RootLayout({

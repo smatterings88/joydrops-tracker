@@ -121,7 +121,7 @@ export default function IndividualRegisterPage() {
             <div className="max-w-md w-full mx-auto bg-white rounded-xl shadow-md p-8">
                 <div className="text-center mb-8">
                     <h2 className="text-3xl font-extrabold text-gray-900">Individual Registration</h2>
-                    <p className="mt-2 text-sm text-gray-600">Start tracking your joydrops</p>
+                    <p className="mt-2 text-sm text-gray-600">Start tracking your ThankYouGrams</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -169,7 +169,7 @@ export default function IndividualRegisterPage() {
                             </select>
                             {orgCount !== null && (
                                 <p className="mt-1 text-sm text-purple-600">
-                                    Current Joydrops: <span className="font-bold">{orgCount}</span> (Tier 2)
+                                    Current ThankYouGrams: <span className="font-bold">{orgCount}</span> (Tier 2)
                                 </p>
                             )}
                         </div>

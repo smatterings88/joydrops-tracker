@@ -6,7 +6,7 @@ export default function RegisterPage() {
         <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
             <div className="max-w-4xl w-full text-center space-y-8">
                 <div>
-                    <h1 className="text-4xl font-bold text-gray-900 tracking-tight">Join Joydrops Tracker</h1>
+                    <h1 className="text-4xl font-bold text-gray-900 tracking-tight">Join ThankYouGram</h1>
                     <p className="mt-4 text-xl text-gray-500">Choose your account type to get started</p>
                 </div>
 
@@ -21,7 +21,7 @@ export default function RegisterPage() {
                         </div>
                         <h2 className="text-2xl font-bold text-gray-900 mb-2">Individual</h2>
                         <p className="text-gray-500 mb-6">
-                            Track your own joydrops, join organizations, and see your personal impact grow.
+                            Track your own ThankYouGrams, join organizations, and see your personal impact grow.
                         </p>
                         <span className="text-blue-600 font-medium group-hover:translate-x-1 inline-flex items-center transition-transform">
                             Register as Individual &rarr;
@@ -38,7 +38,7 @@ export default function RegisterPage() {
                         </div>
                         <h2 className="text-2xl font-bold text-gray-900 mb-2">Organization</h2>
                         <p className="text-gray-500 mb-6">
-                            Create a team profile, aggregate member joydrops, and compete on the leaderboard.
+                            Create a team profile, aggregate member ThankYouGrams, and compete on the leaderboard.
                         </p>
                         <span className="text-purple-600 font-medium group-hover:translate-x-1 inline-flex items-center transition-transform">
                             Register Organization &rarr;

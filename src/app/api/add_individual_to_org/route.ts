@@ -45,7 +45,7 @@ export async function POST(request: Request) {
 
         return NextResponse.json({
             success: true,
-            message: `Successfully added ${individualData.name} to organization. Added ${result.addedJoydrops} joydrops to Tier 2 count.`,
+            message: `Successfully added ${individualData.name} to organization. Added ${result.addedJoydrops} ThankYouGrams to Tier 2 count.`,
             newOrgCount: 'Updated' // Client should refetch
         });
 

@@ -59,7 +59,7 @@ export async function POST(request: Request) {
         });
 
         // 3. TIER 2 UPDATE: Increment organization count (if exists)
-        let message = 'Joydrop registered (Tier 1)';
+        let message = 'ThankYouGram registered (Tier 1)';
         if (userData?.organizationId) {
             const orgRef = adminDb.collection('user_profiles').doc(userData.organizationId);
             batch.update(orgRef, {

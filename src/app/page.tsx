@@ -17,7 +17,7 @@ export default function Home() {
               <span className="text-blue-600">amplify your joy.</span>
             </h1>
             <p className="text-xl text-gray-500 mb-10 leading-relaxed">
-              Joydrops Tracker introduces a revolutionary <strong>2-Tier Tracking System</strong>.
+              ThankYouGram introduces a revolutionary <strong>2-Tier Tracking System</strong>.
               Every good deed counts twice: once for your personal score, and once for your organization's collective impact.
             </p>
 
@@ -44,7 +44,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Tier 1: Personal Growth</h3>
               <p className="text-gray-500">
-                Track your own joydrops and build your personal legacy. Every action you log increases your personal score immediately.
+                Track your own ThankYouGrams and build your personal legacy. Every action you log increases your personal score immediately.
               </p>
             </div>
 
@@ -64,7 +64,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Verified Impact</h3>
               <p className="text-gray-500">
-                With geolocation verification and real-time tracking, every joydrop is a verified step towards a better world.
+                With geolocation verification and real-time tracking, every ThankYouGram is a verified step towards a better world.
               </p>
             </div>
 
@@ -75,7 +75,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-white border-t py-12">
         <div className="max-w-7xl mx-auto px-4 text-center text-gray-400">
-          <p>&copy; 2026 Joydrops Tracker. All rights reserved.</p>
+          <p>&copy; 2026 ThankYouGram. All rights reserved.</p>
         </div>
       </footer>
     </div>

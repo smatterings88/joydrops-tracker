@@ -109,7 +109,7 @@ export default function OrganizationRegisterPage() {
 
                     <div className="bg-purple-50 p-4 rounded-md">
                         <p className="text-sm text-purple-800">
-                            Your <strong>Organization Joydrop Count (Tier 2)</strong> will automatically grow as your members register joydrops.
+                            Your <strong>Organization ThankYouGram Count (Tier 2)</strong> will automatically grow as your members register ThankYouGrams.
                         </p>
                     </div>
 

@@ -24,7 +24,7 @@ export function Navbar() {
                         <div className="bg-blue-600 p-1.5 rounded-lg">
                             <Droplets className="h-6 w-6 text-white" />
                         </div>
-                        <span className="font-bold text-xl text-gray-900">Joydrops</span>
+                        <span className="font-bold text-xl text-gray-900">ThankYouGram</span>
                     </Link>
                     <div className="flex items-center gap-4">
                         {user ? (
@@ -68,7 +68,7 @@ export function Navbar() {
                                     href="/register-joydrop" 
                                     className="text-gray-600 hover:text-gray-900 font-medium"
                                 >
-                                    Register Joydrop
+                                    Register ThankYouGram
                                 </Link>
                                 <button
                                     onClick={handleLogout}

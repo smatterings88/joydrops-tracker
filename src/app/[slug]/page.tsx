@@ -130,7 +130,7 @@ export default async function ProfilePage({ params }: PageProps) {
                                 <p className="text-sm text-gray-500">Current Org Total</p>
                                 <p className="font-bold text-gray-900 text-xl">{/* Since we don't have realtime org count here without fetch, we omit or rely on data sync. 
                         Ideally we fetch Org doc too. But for MVP let's leave it simple or show 'View Org'.
-                        Actually, request says "Show organization's TIER 2 count: Organization Joydrops: [count]".
+                        Actually, request says "Show organization's TIER 2 count: Organization ThankYouGrams: [count]".
                         So distinct fetch needed OR user_profiles has denormalized org count?
                         Schema says "orgJoydropCount" is on the Organization doc, NOT mirrored to individual.
                         So I need to fetch the Organization Doc to get the latest count.

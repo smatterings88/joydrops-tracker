@@ -64,7 +64,7 @@ export const OrganizationMemberList: React.FC<OrganizationMemberListProps> = ({
                         </Link>
                         <div className="flex items-center gap-2 mt-1">
                             <TierIndicator tier={1} size="sm" />
-                            <span className="text-sm font-bold text-gray-700">{member.joydropCount} joydrops</span>
+                            <span className="text-sm font-bold text-gray-700">{member.joydropCount} ThankYouGrams</span>
                         </div>
                     </div>
 

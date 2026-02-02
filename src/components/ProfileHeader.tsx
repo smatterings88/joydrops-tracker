@@ -18,7 +18,7 @@ export function ProfileHeader() {
 
     return (
         <div className="bg-white border-b shadow-sm sticky top-0 z-10 px-4 py-3 flex justify-between items-center">
-            <Link href="/" className="font-bold text-xl text-gray-900">Joydrops</Link>
+            <Link href="/" className="font-bold text-xl text-gray-900">ThankYouGram</Link>
             <div className="flex items-center gap-3">
                 {user && (
                     <>
@@ -50,7 +50,7 @@ export function ProfileHeader() {
                             </Link>
                         )}
                         <Link href="/register-joydrop" className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
-                            Register Joydrop
+                            Register ThankYouGram
                         </Link>
                         <button
                             onClick={handleLogout}
@@ -63,7 +63,7 @@ export function ProfileHeader() {
                 )}
                 {!user && (
                     <Link href="/register-joydrop" className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
-                        Register Joydrop
+                        Register ThankYouGram
                     </Link>
                 )}
             </div>
