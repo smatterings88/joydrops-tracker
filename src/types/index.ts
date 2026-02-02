@@ -29,14 +29,23 @@ export interface UserProfile {
     // Organization Fields
     orgName?: string;
     orgType?: string;
+    orgWebsite?: string;
     orgAddress?: string;
     orgCity?: string;
     orgStateProvince?: string;
     orgCountry?: string;
+    // Primary Contact (new fields)
+    contactFirstName?: string;
+    contactLastName?: string;
+    contactRole?: string;
+    // Legacy contact fields
     orgContactPerson?: string;
     orgContactNumber?: string;
     orgContactEmail?: string;
     orgSize?: string;
+    featuredPublicly?: string;
+    beneficiary?: string;
+    referrals?: string;
 
     // TIER 2: Organization Count & Members
     orgJoydropCount?: number;

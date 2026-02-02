@@ -10,22 +10,45 @@ export async function POST(request: Request) {
             password,
             orgName,
             slug,
+            // Community Identity
             orgType,
-            orgAddress,
+            orgWebsite,
+            // Location
             orgCity,
-            orgStateProvince,
             orgCountry,
+            // Primary Contact
+            contactFirstName,
+            contactLastName,
+            contactRole,
+            // Scale & Impact
+            orgSize,
+            featuredPublicly,
+            beneficiary,
+            // Referrals
+            referrals,
+            // Legacy fields (for backward compatibility)
+            orgAddress,
+            orgStateProvince,
             orgContactPerson,
             orgContactNumber,
             orgContactEmail,
-            orgSize
         } = body;
 
-        if (!email || !password || !orgName || !slug) {
+        if (!email || !password || !orgName) {
             return NextResponse.json({ success: false, message: 'Missing required fields' }, { status: 400 });
         }
 
-        const normalizedSlug = slug.toLowerCase();
+        // Auto-generate slug from orgName if not provided
+        let normalizedSlug = slug?.toLowerCase() || orgName
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, '')
+            .substring(0, 30);
+        
+        // Ensure slug is not empty
+        if (!normalizedSlug) {
+            normalizedSlug = `org-${Date.now()}`;
+        }
         const normalizedOrgName = orgName.trim();
 
         // Check slug
@@ -77,14 +100,30 @@ export async function POST(request: Request) {
             // Organization fields
             orgName: normalizedOrgName, // Store normalized (trimmed) name
             orgType: orgType || null,
+            orgWebsite: orgWebsite || null,
             orgAddress: orgAddress || null,
             orgCity: orgCity || null,
             orgStateProvince: orgStateProvince || null,
             orgCountry: orgCountry || null,
-            orgContactPerson: orgContactPerson || null,
+            
+            // Primary Contact (new fields)
+            contactFirstName: contactFirstName || null,
+            contactLastName: contactLastName || null,
+            contactRole: contactRole || null,
+            // Legacy contact fields (for backward compatibility)
+            orgContactPerson: orgContactPerson || contactFirstName && contactLastName 
+                ? `${contactFirstName} ${contactLastName}`.trim() 
+                : null,
             orgContactNumber: orgContactNumber || null,
-            orgContactEmail: orgContactEmail || null,
+            orgContactEmail: orgContactEmail || email || null,
+            
+            // Scale & Impact
             orgSize: orgSize || null,
+            featuredPublicly: featuredPublicly || null,
+            beneficiary: beneficiary || null,
+            
+            // Referrals
+            referrals: referrals || null,
 
             // Metrics
             orgJoydropCount: 0, // TIER 2 initialized to 0
