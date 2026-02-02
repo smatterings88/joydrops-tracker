@@ -15,7 +15,8 @@ export async function POST(request: Request) {
         const normalizedSlug = slug.toLowerCase();
 
         // Check strict length and format on server side too
-        if (normalizedSlug.length > 30 || !/^[a-z0-9]+$/.test(normalizedSlug)) {
+        // Allow alphanumeric and hyphens, but not at start/end
+        if (normalizedSlug.length > 30 || !/^[a-z0-9-]+$/.test(normalizedSlug) || normalizedSlug.startsWith('-') || normalizedSlug.endsWith('-')) {
             return NextResponse.json(
                 { available: false, message: 'Invalid slug format' },
                 { status: 400 }

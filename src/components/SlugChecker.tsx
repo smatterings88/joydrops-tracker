@@ -17,7 +17,7 @@ export const SlugChecker: React.FC<SlugCheckerProps> = ({
     onChange,
     onAvailabilityChange,
     label = "Choose your unique ID (Slug)",
-    placeholder = "e.g. johndoe"
+    placeholder = "e.g. john-doe"
 }) => {
     const [loading, setLoading] = useState(false);
     const [available, setAvailable] = useState<boolean | null>(null);
@@ -40,8 +40,9 @@ export const SlugChecker: React.FC<SlugCheckerProps> = ({
                 return;
             }
 
-            if (!/^[a-z0-9]+$/i.test(value)) {
-                setError("Alphanumeric only");
+            // Allow alphanumeric and hyphens, but not at start/end
+            if (!/^[a-z0-9-]+$/i.test(value) || value.startsWith('-') || value.endsWith('-')) {
+                setError("Letters, numbers, and hyphens only (no hyphens at start/end)");
                 setAvailable(false);
                 onAvailabilityChange(false);
                 return;
