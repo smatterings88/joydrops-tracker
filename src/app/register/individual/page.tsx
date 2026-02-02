@@ -117,11 +117,11 @@ export default function IndividualRegisterPage() {
     // I'll rewrite the component properly.
 
     return (
-        <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-md w-full mx-auto bg-white rounded-xl shadow-md p-8">
-                <div className="text-center mb-8">
-                    <h2 className="text-3xl font-extrabold text-gray-900">Individual Registration</h2>
-                    <p className="mt-2 text-sm text-gray-600">Start tracking your ThankYouGrams</p>
+        <div className="min-h-screen bg-gray-50 py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-md w-full mx-auto bg-white rounded-xl shadow-md p-6 sm:p-8">
+                <div className="text-center mb-6 sm:mb-8">
+                    <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900">Individual Registration</h2>
+                    <p className="mt-2 text-xs sm:text-sm text-gray-600">Start tracking your ThankYouGrams</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -195,13 +195,13 @@ export default function IndividualRegisterPage() {
                     <button
                         type="submit"
                         disabled={!isSlugAvailable || loading}
-                        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                        className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
                     >
                         {loading ? 'Creating Account...' : 'Register'}
                     </button>
                 </form>
                 <div className="mt-4 text-center">
-                    <Link href="/register" className="text-sm text-gray-500 hover:text-gray-700">Back to selection</Link>
+                    <Link href="/register" className="text-xs sm:text-sm text-gray-500 hover:text-gray-700">Back to selection</Link>
                 </div>
             </div>
         </div>
