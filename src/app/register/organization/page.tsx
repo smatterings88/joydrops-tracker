@@ -414,7 +414,7 @@ export default function OrganizationRegisterPage() {
                     {/* Submit Button */}
                     <button
                         type="submit"
-                        disabled={loading || (formData.slug && !isSlugAvailable)}
+                        disabled={loading || (formData.slug ? !isSlugAvailable : false)}
                         className="w-full flex justify-center items-center gap-2 py-3.5 px-6 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
                     >
                         {loading ? 'Registering...' : (
