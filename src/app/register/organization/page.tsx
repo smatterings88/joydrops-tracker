@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { SlugChecker } from '@/components/SlugChecker';
 import Link from 'next/link';
@@ -37,18 +37,6 @@ export default function OrganizationRegisterPage() {
     const [loading, setLoading] = useState(false);
     const [isSlugAvailable, setIsSlugAvailable] = useState(false);
 
-    // Auto-generate slug from community name
-    useEffect(() => {
-        if (formData.orgName && !formData.slug) {
-            const autoSlug = formData.orgName
-                .toLowerCase()
-                .replace(/[^a-z0-9]+/g, '-')
-                .replace(/^-+|-+$/g, '')
-                .substring(0, 30);
-            setFormData(prev => ({ ...prev, slug: autoSlug }));
-        }
-    }, [formData.orgName]);
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value, type } = e.target;
         if (type === 'checkbox') {
@@ -65,11 +53,7 @@ export default function OrganizationRegisterPage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Allow submission if slug is empty (will be auto-generated) or if it's available
-        if (formData.slug && !isSlugAvailable) {
-            alert('Please wait for slug validation or choose a different community name.');
-            return;
-        }
+        if (!isSlugAvailable) return;
 
         setLoading(true);
 
@@ -124,6 +108,17 @@ export default function OrganizationRegisterPage() {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-8">
+                    {/* Slug Checker - Must be first */}
+                    <div className="space-y-4">
+                        <SlugChecker
+                            value={formData.slug}
+                            onChange={handleSlugChange}
+                            onAvailabilityChange={setIsSlugAvailable}
+                            label="Organization ID (Slug)"
+                            placeholder="e.g. acme-corp"
+                        />
+                    </div>
+
                     {/* Community Identity Section */}
                     <div className="space-y-4">
                         <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Community Identity</h3>
@@ -380,17 +375,6 @@ export default function OrganizationRegisterPage() {
                         </div>
                     </div>
 
-                    {/* Slug Checker - auto-generated from community name */}
-                    {formData.slug && (
-                        <div className="opacity-0 h-0 overflow-hidden">
-                            <SlugChecker
-                                value={formData.slug}
-                                onChange={handleSlugChange}
-                                onAvailabilityChange={setIsSlugAvailable}
-                            />
-                        </div>
-                    )}
-
                     {/* Consent Checkbox */}
                     <div className="flex items-start">
                         <div className="flex items-center h-5">
@@ -414,7 +398,7 @@ export default function OrganizationRegisterPage() {
                     {/* Submit Button */}
                     <button
                         type="submit"
-                        disabled={loading || (formData.slug ? !isSlugAvailable : false)}
+                        disabled={!isSlugAvailable || loading}
                         className="w-full flex justify-center items-center gap-2 py-3.5 px-6 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
                     >
                         {loading ? 'Registering...' : (
