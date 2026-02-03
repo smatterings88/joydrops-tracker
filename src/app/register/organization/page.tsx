@@ -1,13 +1,19 @@
 "use client";
 
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useState, useEffect, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { SlugChecker } from '@/components/SlugChecker';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
-export default function OrganizationRegisterPage() {
+function OrganizationRegisterForm() {
     const router = useRouter();
+    const searchParams = useSearchParams();
+    
+    // Get contact_email from query parameter
+    const contactEmailParam = searchParams.get('contact_email');
+    const isEmailLocked = !!contactEmailParam;
+
     const [formData, setFormData] = useState({
         // Community Identity
         orgName: '',
@@ -20,7 +26,7 @@ export default function OrganizationRegisterPage() {
         contactFirstName: '',
         contactLastName: '',
         contactRole: '',
-        email: '',
+        email: contactEmailParam || '',
         password: '',
         // Scale & Impact
         orgSize: '',
@@ -37,8 +43,21 @@ export default function OrganizationRegisterPage() {
     const [loading, setLoading] = useState(false);
     const [isSlugAvailable, setIsSlugAvailable] = useState(false);
 
+    // Update email if contact_email param changes
+    useEffect(() => {
+        if (contactEmailParam) {
+            setFormData(prev => ({ ...prev, email: contactEmailParam }));
+        }
+    }, [contactEmailParam]);
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value, type } = e.target;
+        
+        // Prevent email changes when locked
+        if (name === 'email' && isEmailLocked) {
+            return;
+        }
+        
         if (type === 'checkbox') {
             const checked = (e.target as HTMLInputElement).checked;
             setFormData(prev => ({ ...prev, [name]: checked }));
@@ -269,10 +288,19 @@ export default function OrganizationRegisterPage() {
                                 type="email" 
                                 name="email" 
                                 value={formData.email} 
-                                onChange={handleChange} 
+                                onChange={handleChange}
+                                disabled={isEmailLocked}
+                                readOnly={isEmailLocked}
                                 placeholder="Your Primary Email"
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 border p-2.5 text-gray-900 text-sm" 
+                                className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 border p-2.5 text-gray-900 text-sm ${
+                                    isEmailLocked ? 'bg-gray-100 cursor-not-allowed' : ''
+                                }`}
                             />
+                            {isEmailLocked && (
+                                <p className="mt-1 text-xs text-gray-500">
+                                    Email is pre-filled from the registration link and cannot be changed.
+                                </p>
+                            )}
                         </div>
 
                         <div>
@@ -414,5 +442,20 @@ export default function OrganizationRegisterPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function OrganizationRegisterPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-600 mx-auto"></div>
+                    <p className="mt-2 text-gray-600">Loading...</p>
+                </div>
+            </div>
+        }>
+            <OrganizationRegisterForm />
+        </Suspense>
     );
 }
